@@ -61,9 +61,7 @@ export class App extends Component {
         <h3>Find contacts by name</h3>
         <ContactSearch onChange={this.onChangeHandle} />
         <Contacts
-          contacts={
-            this.state.filter ? this.filterHandler() : this.state.contacts
-          }
+          contacts={this.filterHandler()}
           clickHandler={this.contactDeleteHandler}
         />
       </div>

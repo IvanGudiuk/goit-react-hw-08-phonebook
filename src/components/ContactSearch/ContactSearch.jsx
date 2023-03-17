@@ -1,15 +1,14 @@
-import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import css from './ContactSearch.module.css';
 
-export class ContactSearch extends Component {
-  inputHandler = e => {
+export function ContactSearch({ onChange }) {
+  const inputHandler = e => {
     const search = e.target.value;
-    this.props.onChange(search);
+    onChange(search);
   };
 
-  render() {
-    return (
-      <input className={css.input} name="search" onChange={this.inputHandler} />
-    );
-  }
+  return <input className={css.input} name="search" onChange={inputHandler} />;
 }
+ContactSearch.propType = {
+  onChange: PropTypes.func,
+};
