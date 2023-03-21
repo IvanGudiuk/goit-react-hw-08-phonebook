@@ -2,12 +2,17 @@ import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 import css from './AddContact.module.css';
-
+const LS_KEY = 'formValue';
+const storage = JSON.parse(localStorage.getItem(LS_KEY));
 export class AddContact extends Component {
   state = {
-    name: '',
-    number: '',
+    name: storage?.name || '',
+    number: storage?.number || '',
   };
+
+  componentDidUpdate() {
+    localStorage.setItem(LS_KEY, JSON.stringify(this.state));
+  }
 
   handleSubmit = e => {
     e.preventDefault();
@@ -17,6 +22,8 @@ export class AddContact extends Component {
     const id = nanoid();
     this.props.onSubmit({ name, number, id });
     form.reset();
+    localStorage.removeItem(LS_KEY);
+    this.setState({ name: '', number: '' });
   };
 
   inputChangeHandler = e => {
@@ -37,6 +44,7 @@ export class AddContact extends Component {
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
           onChange={this.inputChangeHandler}
+          value={this.state.name}
         />
         <label className={css.label}>Number</label>
         <input
@@ -47,6 +55,7 @@ export class AddContact extends Component {
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
           onChange={this.inputChangeHandler}
+          value={this.state.number}
         />
         <button type="submit" className={css.btn}>
           Add contact
