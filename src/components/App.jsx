@@ -2,17 +2,16 @@ import { Component } from 'react';
 import { AddContact } from './AddContact/AddContact';
 import { Contacts } from './Contacts/Contacts';
 import { ContactSearch } from './ContactSearch/ContactSearch';
+const LS_KEY = 'Contacts';
+const storage = JSON.parse(localStorage.getItem(LS_KEY));
 export class App extends Component {
   state = {
-    contacts: [
-      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-    ],
+    contacts: storage ? [...storage] : [],
     filter: '',
   };
-
+  componentDidUpdate() {
+    localStorage.setItem(LS_KEY, JSON.stringify(this.state.contacts));
+  }
   submitHandler = contact => {
     const names = this.state.contacts.map(obj => obj.name);
     if (!names.includes(contact.name)) {
