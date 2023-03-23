@@ -3,15 +3,21 @@ import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 import css from './AddContact.module.css';
 const LS_KEY = 'formValue';
-const storage = JSON.parse(localStorage.getItem(LS_KEY));
+
 export class AddContact extends Component {
   state = {
-    name: storage?.name || '',
-    number: storage?.number || '',
+    name: '',
+    number: '',
   };
 
-  componentDidUpdate() {
-    localStorage.setItem(LS_KEY, JSON.stringify(this.state));
+  componentDidMount() {
+    const storage = JSON.parse(localStorage.getItem(LS_KEY));
+    if (storage) this.setState({ name: storage.name, number: storage.number });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState !== this.state && this.state.name !== '')
+      localStorage.setItem(LS_KEY, JSON.stringify(this.state));
   }
 
   handleSubmit = e => {
