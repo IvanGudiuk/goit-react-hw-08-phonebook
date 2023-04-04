@@ -1,14 +1,15 @@
-import PropTypes from 'prop-types';
 import css from './ContactSearch.module.css';
+import { setFilter } from 'redux/filterSlice';
+import { useDispatch } from 'react-redux';
 
-export function ContactSearch({ onChange }) {
+export function ContactSearch() {
+  const dispatch = useDispatch();
+
   const inputHandler = e => {
     const { value } = e.target;
-    onChange(value);
+    const search = value.trim().toLowerCase();
+    dispatch(setFilter(search));
   };
 
   return <input className={css.input} name="search" onChange={inputHandler} />;
 }
-ContactSearch.propType = {
-  onChange: PropTypes.func,
-};

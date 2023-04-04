@@ -1,18 +1,25 @@
-import { useLocalStorage } from 'hooks/useLocalStorage';
-import { nanoid } from 'nanoid';
-import PropTypes from 'prop-types';
+import { useState } from 'react';
+import { addContact } from '../../redux/contactsSlice';
+import { useDispatch, useSelector } from 'react-redux';
 import css from './AddContact.module.css';
 
-export function AddContact({ onSubmit }) {
-  const [name, setName] = useLocalStorage('name', ' ');
-  const [number, setNumber] = useLocalStorage('number', ' ');
+export function AddContact() {
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState(' ');
+  const dispatch = useDispatch();
+  const contacts = useSelector(state => state.contacts.contacts);
+  const names = contacts.map(obj => obj.name);
 
   const handleSubmit = e => {
     e.preventDefault();
     const form = e.target;
-    const id = nanoid();
-    onSubmit({ name, number, id });
-    form.reset();
+    const name = form.elements.name.value;
+    const number = form.elements.number.value;
+    if (!names.includes(name)) {
+      dispatch(addContact(name, number));
+    } else {
+      alert(`${name} is already in contacts`);
+    }
     setName('');
     setNumber('');
   };
@@ -52,7 +59,3 @@ export function AddContact({ onSubmit }) {
     </form>
   );
 }
-
-AddContact.propTypes = {
-  onSubmit: PropTypes.func,
-};
