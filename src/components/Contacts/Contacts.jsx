@@ -1,20 +1,33 @@
-import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchContactsThunk } from 'redux/thunks';
 import css from './Contacts.module.css';
 
 export function Contacts({ clickHandler }) {
-  const contacts = useSelector(state => state.contacts.contacts);
+  const contacts = useSelector(state => state.contacts.items);
   const filter = useSelector(state => state.filter.value);
+  const dispatch = useDispatch();
 
   const filteredContact = contacts.filter(contact =>
     contact.name.toLowerCase().includes(filter.toLowerCase())
   );
 
+  useEffect(() => {
+    async function fetchContacts() {
+      try {
+        await dispatch(fetchContactsThunk());
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchContacts();
+  }, [dispatch]);
+
   return (
     <ul className={css.list}>
-      {filteredContact.map(({ id, name, number }) => (
+      {filteredContact.map(({ id, name, phone }) => (
         <li className={css.item} key={id}>
-          {name}: {number}
+          {name}: {phone}
           <button
             className={css.btn}
             onClick={() => clickHandler(id)}
@@ -27,7 +40,3 @@ export function Contacts({ clickHandler }) {
     </ul>
   );
 }
-
-Contacts.propTypes = {
-  clickHandler: PropTypes.func,
-};

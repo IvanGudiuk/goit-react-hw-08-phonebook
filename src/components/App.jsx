@@ -1,28 +1,24 @@
 import { AddContact } from './AddContact/AddContact';
 import { Contacts } from './Contacts/Contacts';
 import { ContactSearch } from './ContactSearch/ContactSearch';
-import { deleteContact } from 'redux/contactsSlice';
 import { useDispatch } from 'react-redux';
+import { deleteContactThunk } from 'redux/thunks';
 
 export function App() {
   const dispatch = useDispatch();
 
   const contactDeleteHandler = id => {
-    console.log(id);
-    dispatch(deleteContact(id));
+    dispatch(deleteContactThunk(id));
   };
 
   return (
     <div
       style={{
         height: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
         padding: 30,
         fontSize: 40,
         color: '#010101',
+        textAlign: 'center',
       }}
     >
       <h1>Phonebook</h1>

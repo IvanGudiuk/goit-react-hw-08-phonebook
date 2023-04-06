@@ -1,4 +1,9 @@
+.section {
+  display: flex;
+  justify-content: center;
+}
 .form {
+  display: block;
   border: 1px solid blueviolet;
   border-radius: 5px;
   padding: 20px 10px;
