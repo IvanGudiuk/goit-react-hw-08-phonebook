@@ -1,16 +1,8 @@
 import { AddContact } from './AddContact/AddContact';
 import { Contacts } from './Contacts/Contacts';
 import { ContactSearch } from './ContactSearch/ContactSearch';
-import { useDispatch } from 'react-redux';
-import { deleteContactThunk } from 'redux/thunks';
 
 export function App() {
-  const dispatch = useDispatch();
-
-  const contactDeleteHandler = id => {
-    dispatch(deleteContactThunk(id));
-  };
-
   return (
     <div
       style={{
@@ -26,7 +18,7 @@ export function App() {
       <h2>Contacts</h2>
       <h3>Find contacts by name</h3>
       <ContactSearch />
-      <Contacts clickHandler={contactDeleteHandler} />
+      <Contacts />
     </div>
   );
 }

@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchContactsThunk } from 'redux/thunks';
+import { deleteContactThunk } from 'redux/thunks';
 import css from './Contacts.module.css';
 
-export function Contacts({ clickHandler }) {
+export function Contacts() {
   const contacts = useSelector(state => state.contacts.items);
   const filter = useSelector(state => state.filter.value);
   const dispatch = useDispatch();
@@ -12,15 +13,12 @@ export function Contacts({ clickHandler }) {
     contact.name.toLowerCase().includes(filter.toLowerCase())
   );
 
+  const clickHandler = id => {
+    dispatch(deleteContactThunk(id));
+  };
+
   useEffect(() => {
-    async function fetchContacts() {
-      try {
-        await dispatch(fetchContactsThunk());
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    fetchContacts();
+    dispatch(fetchContactsThunk());
   }, [dispatch]);
 
   return (
