@@ -1,11 +1,13 @@
 import { userLoginThunk } from 'redux/thunks';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import css from './LoginForm.module.css';
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const err = useSelector(state => state.auth.error);
 
   const submitHandler = e => {
     e.preventDefault();
@@ -17,7 +19,7 @@ export const LoginForm = () => {
       })
     );
     form.reset();
-    navigate('/');
+    !err && setTimeout(() => navigate('/contacts'), 500);
   };
 
   return (

@@ -18,6 +18,7 @@ const contactsSlice = createSlice({
     builder
       .addCase(fetchContactsThunk.pending, state => {
         state.isLoading = true;
+        state.items = [];
       })
       .addCase(fetchContactsThunk.fulfilled, (state, action) => {
         state.isLoading = false;
