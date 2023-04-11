@@ -1,7 +1,6 @@
 import css from './ContactSearch.module.css';
 import { setFilter } from 'redux/filterSlice';
 import { useDispatch } from 'react-redux';
-import { GrSearch } from 'react-icons/gr';
 
 export function ContactSearch() {
   const dispatch = useDispatch();

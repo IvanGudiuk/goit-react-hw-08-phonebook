@@ -1,19 +1,14 @@
 import { Routes, Route } from 'react-router-dom';
 import { refreshThunk } from 'redux/thunks';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import Home from 'pages/Home';
 import Contacts from 'pages/Contacts';
 import Login from 'pages/Login';
-import { ContactSearch } from './ContactSearch/ContactSearch';
-import { Layout } from './Layout/Layout';
 import Register from 'pages/Register';
+import { Layout } from './Layout/Layout';
 import { PrivateRoute } from './PrivateRoute';
 import { RestrictedRoute } from './RestrictedRoute';
-// import { Login } from 'pages/Login';
-// import { Contacts } from 'pages/Contacts';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { ContactsList } from './ContactsList/ContactsList';
-// import { userCreateThunk } from 'redux/thunks';
 
 export function App() {
   const dispatch = useDispatch();
@@ -49,7 +44,6 @@ export function App() {
             }
           />
         </Route>
-        {/* <Route path="*" element={<NotFound />}></Route> */}
       </Routes>
     </div>
   );

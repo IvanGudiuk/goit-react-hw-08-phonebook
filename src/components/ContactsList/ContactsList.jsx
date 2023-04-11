@@ -1,8 +1,5 @@
-import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchContactsThunk } from 'redux/thunks';
 import { deleteContactThunk } from 'redux/thunks';
-import { userCreateThunk } from 'redux/thunks';
 import { AiTwotoneDelete } from 'react-icons/ai';
 import css from './Contacts.module.css';
 
