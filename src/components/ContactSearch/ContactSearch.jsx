@@ -1,6 +1,7 @@
 import css from './ContactSearch.module.css';
 import { setFilter } from 'redux/filterSlice';
 import { useDispatch } from 'react-redux';
+import { GrSearch } from 'react-icons/gr';
 
 export function ContactSearch() {
   const dispatch = useDispatch();
@@ -11,5 +12,15 @@ export function ContactSearch() {
     dispatch(setFilter(search));
   };
 
-  return <input className={css.input} name="search" onChange={inputHandler} />;
+  return (
+    <div className={css.wrapper}>
+      <h2 className={css.title}>Search a contact</h2>
+      <input
+        className={css.input}
+        name="search"
+        onChange={inputHandler}
+        placeholder="type name or surname"
+      />
+    </div>
+  );
 }

@@ -1,0 +1,44 @@
+.navbar {
+  background-color: grey;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+}
+
+.title {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #fff;
+}
+.span {
+  color: blue;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.icon {
+  display: block;
+  width: 20px;
+  height: 20px;
+  fill: #fff;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+  margin-right: auto;
+  margin-left: auto;
+}
+.sec {
+  height: 100vh;
+  background-size: cover;
+  background-repeat: repeat;
+  background-position: center center;
+  background-attachment: fixed;
+}

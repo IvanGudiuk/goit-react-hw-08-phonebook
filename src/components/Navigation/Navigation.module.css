@@ -1,0 +1,28 @@
+.list {
+  display: flex;
+  gap: 25px;
+  list-style: none;
+}
+.link {
+  text-decoration: none;
+  font-size: 18px;
+  color: #fff;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.active {
+  color: blue;
+  text-decoration: none;
+  font-size: 18px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.link:hover {
+  color: blue;
+}
+.icon {
+  width: 25px;
+  height: 25px;
+}

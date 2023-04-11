@@ -1,6 +1,35 @@
-.input {
-  display: block;
-  margin-bottom: 10px;
+.title {
+  text-align: center;
+  color: grey;
+  margin-bottom: 0;
+}
+
+.wrapper {
+  position: relative;
+  width: 40%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   margin-left: auto;
   margin-right: auto;
+}
+
+.input {
+  display: block;
+  width: 50%;
+  margin-top: 15px;
+  height: 30px;
+  border: none;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 5px 15px;
+}
+
+.input:focus {
+  outline: none;
+  border: 1px solid gray;
+}
+
+.input:focus.icon {
+  display: none;
 }
